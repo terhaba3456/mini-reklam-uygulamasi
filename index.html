@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reklam Uygulaması</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+        }
+        .ad-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .ad-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        .visit-btn {
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .visit-btn:hover {
+            background-color: #2563eb;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl font-bold text-white text-center mb-8">Web Sitesi Reklamları</h1>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6" id="adContainer">
+            <!-- Reklamlar burada dinamik olarak eklenecek -->
+        </div>
+    </div>
+
+    <script>
+        // Telegram Mini App başlatma
+        const WebApp = window.Telegram.WebApp;
+        WebApp.ready();
+        WebApp.expand();
+
+        // Örnek reklam verileri
+        const ads = [
+            {
+                name: "Örnek Site 1",
+                description: "Harika bir alışveriş deneyimi!",
+                url: "https://www.example.com",
+                logo: "https://via.placeholder.com/150?text=Logo1"
+            },
+            {
+                name: "Örnek Site 2",
+                description: "En yeni teknoloji haberleri.",
+                url: "https://www.example.org",
+                logo: "https://via.placeholder.com/150?text=Logo2"
+            },
+            {
+                name: "Örnek Site 3",
+                description: "Eğlenceli ve eğitici içerik!",
+                url: "https://www.example.net",
+                logo: "https://via.placeholder.com/150?text=Logo3"
+            }
+        ];
+
+        // Reklamları ekrana ekleme
+        const adContainer = document.getElementById('adContainer');
+        ads.forEach(ad => {
+            const adCard = document.createElement('div');
+            adCard.className = 'ad-card bg-white rounded-lg shadow-lg p-4 flex flex-col items-center';
+            adCard.innerHTML = `
+                <img src="${ad.logo}" alt="${ad.name}" class="w-24 h-24 object-contain mb-4">
+                <h2 class="text-lg font-semibold text-gray-800">${ad.name}</h2>
+                <p class="text-sm text-gray-600 mb-4 text-center">${ad.description}</p>
+                <button class="visit-btn bg-blue-600 text-white px-4 py-2 rounded-md font-medium">Ziyaret Et</button>
+            `;
+            adCard.querySelector('button').addEventListener('click', () => {
+                WebApp.openLink(ad.url);
+            });
+            adContainer.appendChild(adCard);
+        });
+
+        // Telegram Back Button
+        WebApp.BackButton.show();
+        WebApp.onEvent('backButtonClicked', () => {
+            WebApp.close();
+        });
+
+        // Telegram Main Button (opsiyonel, örneğin bir ana aksiyon için)
+        WebApp.MainButton.setText('Tüm Reklamları Gör');
+        WebApp.MainButton.show();
+        WebApp.onEvent('mainButtonClicked', () => {
+            WebApp.showAlert('Daha fazla reklam yakında eklenecek!');
+        });
+    </script>
+</body>
+</html>
