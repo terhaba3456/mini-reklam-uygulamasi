@@ -33,7 +33,7 @@
 </head>
 <body class="text-gray-800">
     <div class="container mx-auto px-4 py-8">
-        <h1 class="text-3xl font-bold text-white text-center mb-8">Web Sitesi Reklamları</h1>
+        <h1 class="text-3xl font-bold text-white text-center mb-8">Deneme Bonusları</h1>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6" id="adContainer">
             <!-- Reklamlar burada dinamik olarak eklenecek -->
         </div>
@@ -48,22 +48,22 @@
         // Örnek reklam verileri
         const ads = [
             {
-                name: "Örnek Site 1",
-                description: "Harika bir alışveriş deneyimi!",
-                url: "https://www.example.com",
-                logo: "https://via.placeholder.com/150?text=Logo1"
+                name: "Duman Bet",
+                description: "500₺ Deneme Bonusu!",
+                url: "https://t2m.io/dbznt",
+                logo: "https://images.app.goo.gl/G8r9AspUaQERdfdq5"
             },
             {
-                name: "Örnek Site 2",
-                description: "En yeni teknoloji haberleri.",
-                url: "https://www.example.org",
-                logo: "https://via.placeholder.com/150?text=Logo2"
+                name: "Seka Bet",
+                description: "250₺ Deneme Bonusu!",
+                url: "https://t2m.io/sbcashback",
+                logo: "https://images.app.goo.gl/aAt35Jgo2hG7Wgi97"
             },
             {
-                name: "Örnek Site 3",
-                description: "Eğlenceli ve eğitici içerik!",
-                url: "https://www.example.net",
-                logo: "https://via.placeholder.com/150?text=Logo3"
+                name: "OtoBet",
+                description: "300₺ Deneme Bonusu!",
+                url: "https://cutt.ly/jePT20M9",
+                logo: "https://images.app.goo.gl/VVjcAoJrvBDPK4Xr7"
             }
         ];
 
@@ -91,10 +91,10 @@
         });
 
         // Telegram Main Button (opsiyonel, örneğin bir ana aksiyon için)
-        WebApp.MainButton.setText('Tüm Reklamları Gör');
+        WebApp.MainButton.setText('Tüm Siteleri Gör');
         WebApp.MainButton.show();
         WebApp.onEvent('mainButtonClicked', () => {
-            WebApp.showAlert('Daha fazla reklam yakında eklenecek!');
+            WebApp.showAlert('Daha fazla deneme bonusu için takipte kalın');
         });
     </script>
 </body>
